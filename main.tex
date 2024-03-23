@@ -7,7 +7,7 @@
 \subjclass{517.98}
 
 \author{Бабошин С.Д.}
-\address{Воронеж}
+\address{Воронежский государственный университет}
 \email{ijustbsd@gmail.com}
 
 \theoremstyle{plain}
@@ -48,9 +48,9 @@
 Если $U, F$ - банаховы пространства с нормами $\|\cdot\|_U$, $\|\cdot\|_F$ и $A$ - линейный
 оператор, то корректность означает ограниченность обратного оператора $A^{-1}$, для
 $u \in D(A) \in F$ выполняется оценка
-\begin{equation}
+\begin{equation*}
     \|u\|_F \le M\|f\|_F
-\end{equation}
+\end{equation*}
 
 Исследование корректности необходимо при численной реализации задач на быстро\-дейтсвующих ЭВМ.
 
@@ -80,21 +80,21 @@ $C_0 U(t_1 - A), t \ge 0$.
 \end{enumerate}
 
 Справедливо соотношение для $\varphi \in D(A)$
-\begin{equation}
+\begin{equation*}
     -A U(t, -A)\varphi = \frac{d}{dt} U(t, -A)\varphi
-\end{equation}
+\end{equation*}
 Если полугруппа U(t, -A) удовлетворяет условиям 1---5, то по Балакришнану \cite{Iosida}, стр. 358, для оператора $A$ определена
 дробная степень $A^\alpha, \alpha \in (0, 1)$ и такой оператор будем называть $B$--позитивным по
 Балакришнану.
 
 Если $f \in D(A)$, то для $B$--позитивного оператора определен обратный $A^{-1}$ соотношением
-\begin{equation}
+\begin{equation*}
     A^{-\alpha}f = \frac{1}{\Gamma(\alpha)} \int\limits_0^\infty \frac{U(t, -A)}{t^{1-\alpha}} fdt
-\end{equation}
+\end{equation*}
 Тогда, согласно Балакришнану \cite{Iosida}, стр. 358, если $A$-- $B$--позитивный, то определена дробная степень $A^{-\alpha}$:
-\begin{equation}
+\begin{equation*}
     A^{\alpha}f = \frac{1}{\Gamma(-\alpha)} \int\limits_0^\infty \frac{1}{t^{1 + \alpha}} [U(t, -A) - I] fdt
-\end{equation}
+\end{equation*}
 
 В настоящей заметке рассматривается уравнение \eqref{eq:auf} когда оператор $A$ является суммой дробных степеней
 $B$-позитивных операторов и доказывается
@@ -103,14 +103,14 @@ $B$-позитивных операторов и доказывается
     \label{theorem:one}
     Если $A_1$ и $A_2$ - $B$-позитивные операторы с полугруппами
     $U(t, -A_1)U(s, -A_2)\varphi = U(s, -A_2)U(t, -A_1)\varphi, \varphi \in D(A_1) \cap D(A_2)$ и оценками
-    \begin{equation}
+    \begin{equation*}
         \|U(t, -A_1)\varphi\| \le Me^{-\omega_1 t} \|\varphi\|, \|U(t, -A_2)\varphi\| \le Me^{-\omega_1 t}
-    \end{equation}
+    \end{equation*}
     то существует оператор $L = (A_1^{\alpha_1} + A_2^{\alpha_2}), \alpha_1 \in [0, 1], \alpha_2 \in [0, 1]$
     и он имеет ограниченный обратный $L^{-1}$ с оценкой
-    \begin{equation}
+    \begin{equation*}
         \|L^{-1}f\| \le \frac{M_1 M_2 \|f\|}{\omega_1^{\alpha_1} \cdot \omega_2^{\alpha_2}}
-    \end{equation}
+    \end{equation*}
 \end{theorem}
 
 \begin{proof}
@@ -144,20 +144,18 @@ $B$-позитивных операторов и доказывается
 
     Таким образом операторы $-A_1^{\alpha_1}$ и $-A_2^{\alpha_2}$ удовлетворяют теореме Да Пратто, Грисварда \cite{Tihonov}
     об обращении суммы операторов
-    \begin{equation}
+    \begin{equation*}
         Lu = (A_1^{\alpha_1} + A_2^{\alpha_2})u = f
-    \end{equation}
+    \end{equation*}
     и пользуясь представлением \cite{Kostin}
-    \begin{equation}
+    \begin{equation*}
         u = \int\limits_0^\infty U(s, -A_1^{\alpha_1}) U(s, -A_2^{\alpha_2})f
-    \end{equation}
+    \end{equation*}
     и оценками \eqref{eq:est_1}, \eqref{eq:est_2} получаем неравенство корректности
     \begin{equation*}
-        \|u\| \le \int\limits_0^\infty \|U(s, -A_1^{\alpha_1})\| \|U(s, -A_2^{\alpha_2})\| ds \|f\|\\
-    \end{equation*}
-    \begin{equation}
+        \|u\| \le \int\limits_0^\infty \|U(s, -A_1^{\alpha_1})\| \|U(s, -A_2^{\alpha_2})\| ds \|f\|
         \le M_1 M_2 \frac{\|f\|}{\omega^{\alpha_1 + \alpha_2}}
-    \end{equation}
+    \end{equation*}
 \end{proof}
 
 
@@ -173,14 +171,14 @@ $B$-позитивных операторов и доказывается
 \end{equation*}
 
 Через $C_\omega (a, b)$ будем обозначать банахово пространство функций $\varphi (x)$ с нормой
-\begin{equation}
+\begin{equation*}
     \|\varphi\|_{C_\omega} = \sup_{x \in (a, b)} e^{\omega h(x)} |\varphi(x)|, \omega \in \mathbb{R}
-\end{equation}
+\end{equation*}
 
 Введём операторы $\pm A_h$, заданный выражениями $\mathbb{D}_h = \pm \frac{d}{dh}$ с областями определения
-\begin{equation}
+\begin{equation*}
     D(\mathbb{D}_h) = \{\varphi \in C_\omega(a, b), \frac{d\varphi}{dh} \in C_\omega(a, b)\}
-\end{equation}
+\end{equation*}
 
 Такие операторы являются генераторами полугрупп вида
 \begin{equation}
@@ -245,8 +243,6 @@ $B$-позитивных операторов и доказывается
 \begin{equation*}
     \|u\|_E\le\frac{\prod_{m=1}^nM_m}{\prod_{m=1}^n\omega_m\alpha_m}\|f\|_E
 \end{equation*}
-
-\clearpage
 
 \begin{thebibliography}{99}
     \bibitem{Krein} {\it Крейн~С.Г.} Линейные дифференциальные уравнения в банаховом пространстве "--- М.: Наука, 1967.
