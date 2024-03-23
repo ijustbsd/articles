@@ -1,0 +1,261 @@
+\documentclass{cmfnre}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+% \usepackage{showframe}
+
+\title{Корректная разрешимость задач для дробно-степенных операторных уравнений}
+\subjclass{517.98}
+
+\author{Бабошин С.Д.}
+\address{Воронеж}
+\email{ijustbsd@gmail.com}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{corollary}{Следствие}[lemma]
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\begin{abstract}
+    В работе рассматривается сумма линейных дробно степенных операторов, действующих в банаховом пространстве
+    и удовлетворяющих слабой позитивности. Устанавливается корректная разрешимость задачи для соответствующего
+    дробно операторного уравнения и приводится представление решения через обратный оператор с оценкой его нормы.
+    Результаты применяются к задачам без начальных условий для уравнения с сингулярными коэффициентами.
+    Приводятся примеры таких уравнений.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+\section{Введение}
+
+Как известно, согласно \cite{Krein} Адамару, задача о нахождении решения уравнения
+\begin{equation}
+    \label{eq:auf}
+    Au = f
+\end{equation}
+на метрических пространствах $U, F$ называется корректной, если:
+\begin{enumerate}
+    \item Решение $u \in U$ существует;
+    \item Решение единственно;
+    \item Решение устойчиво на $(U, F)$. т.е. малым изменениям $f$ в метрике $\rho_F$
+    соответствуют малые изменения $u \in U$ в метрике $\rho_V$.
+\end{enumerate}
+
+Если $U, F$ - банаховы пространства с нормами $\|\cdot\|_U$, $\|\cdot\|_F$ и $A$ - линейный
+оператор, то корректность означает ограниченность обратного оператора $A^{-1}$, для
+$u \in D(A) \in F$ выполняется оценка
+\begin{equation}
+    \|u\|_F \le M\|f\|_F
+\end{equation}
+
+Исследование корректности необходимо при численной реализации задач на быстро\-дейтсвующих ЭВМ.
+
+В частности для уравнений моделирующих процессы во фрактальных средах и описываемых дробно-интегро-дифференциальными
+уравнениями.
+
+Настоящая заметка посвящена исследованию корректной разрешимости вида \eqref{eq:auf}, где оператор
+$A$ представляется в виде дробно-операторной суммы
+$A = (A_1^{\alpha_1} + A_2^{\alpha_2})$, $\alpha_1, \alpha_2 \in (0,1)$
+
+
+\section{Постановка задачи и формулировка результата}
+
+В банаховом пространстве $E$ с нормой $\|\cdot\|_E = \|\cdot\|$ будем рассматривать линейный замкнутный
+оператор $A$ с областью определения $D(A) \subset E$, областью значений $R(A) = E$  и такой, что
+оператор $-A$ является производящим оператором равностепенно непрерывной полугруппы класса
+$C_0 U(t_1 - A), t \ge 0$.
+
+Это, в соответствии с \cite{Iosida}, стр. 58, означает:
+\begin{enumerate}
+    \item $U(0, -A) = I$ - тождественный оператор в $E$;
+    \item $U(t+s, -A) = U(t, -A)U(s, -A) = U(s, -A)U(t, -A)$;
+    \item $\lim\limits_{t\to0} \|U(t, -A)\varphi-\varphi\| = 0, \varphi \in E$;
+    \item $\lim{} \|\frac{1}{t}[U(t, -A)-I]\varphi\| = -A\varphi, \varphi \in D(A), \bar{D}(A) = E$
+    \item $\|U(t, -A)\| \le Me^{-\omega t}, \omega \ge 0, t \ge 0$
+    \hfill\refstepcounter{equation}(\theequation)
+\end{enumerate}
+
+Справедливо соотношение для $\varphi \in D(A)$
+\begin{equation}
+    -A U(t, -A)\varphi = \frac{d}{dt} U(t, -A)\varphi
+\end{equation}
+Если полугруппа U(t, -A) удовлетворяет условиям 1---5, то по Балакришнану \cite{Iosida}, стр. 358, для оператора $A$ определена
+дробная степень $A^\alpha, \alpha \in (0, 1)$ и такой оператор будем называть $B$--позитивным по
+Балакришнану.
+
+Если $f \in D(A)$, то для $B$--позитивного оператора определен обратный $A^{-1}$ соотношением
+\begin{equation}
+    A^{-\alpha}f = \frac{1}{\Gamma(\alpha)} \int\limits_0^\infty \frac{U(t, -A)}{t^{1-\alpha}} fdt
+\end{equation}
+Тогда, согласно Балакришнану \cite{Iosida}, стр. 358, если $A$-- $B$--позитивный, то определена дробная степень $A^{-\alpha}$:
+\begin{equation}
+    A^{\alpha}f = \frac{1}{\Gamma(-\alpha)} \int\limits_0^\infty \frac{1}{t^{1 + \alpha}} [U(t, -A) - I] fdt
+\end{equation}
+
+В настоящей заметке рассматривается уравнение \eqref{eq:auf} когда оператор $A$ является суммой дробных степеней
+$B$-позитивных операторов и доказывается
+
+\begin{theorem}[корректности]
+    \label{theorem:one}
+    Если $A_1$ и $A_2$ - $B$-позитивные операторы с полугруппами
+    $U(t, -A_1)U(s, -A_2)\varphi = U(s, -A_2)U(t, -A_1)\varphi, \varphi \in D(A_1) \cap D(A_2)$ и оценками
+    \begin{equation}
+        \|U(t, -A_1)\varphi\| \le Me^{-\omega_1 t} \|\varphi\|, \|U(t, -A_2)\varphi\| \le Me^{-\omega_1 t}
+    \end{equation}
+    то существует оператор $L = (A_1^{\alpha_1} + A_2^{\alpha_2}), \alpha_1 \in [0, 1], \alpha_2 \in [0, 1]$
+    и он имеет ограниченный обратный $L^{-1}$ с оценкой
+    \begin{equation}
+        \|L^{-1}f\| \le \frac{M_1 M_2 \|f\|}{\omega_1^{\alpha_1} \cdot \omega_2^{\alpha_2}}
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    По условию теоремы операторы $A_1$ и $A_2$ имеют дробные степени $A_1^{\alpha_1}$ и $A_2^{\alpha_2}$,
+    которые $B$--позитивны с полугруппами $U(t, -A_1^{\alpha_1})$, $U(t, -A_2^{\alpha_2})$,
+    которые в силу формулы Иосиды имеют вид
+    \begin{equation}
+        \label{eq:two_int}
+        \begin{aligned}
+            U(t, -A_1^{\alpha_1})\varphi = \int\limits_0^\infty h_{t, \alpha_1}(\xi) U(\xi, -A) \varphi d\xi,\\
+            U(t, -A_2^{\alpha_2})\varphi = \int\limits_0^\infty h_{t, \alpha_2}(\xi) U(\xi, -A) \varphi d\xi
+        \end{aligned}
+    \end{equation}
+    где $h_{t, \alpha}(\xi) > 0$ --- функция Иосиды со свойствами \cite{Iosida}, стр. 358
+    \begin{equation}
+        \label{eq:one_int}
+        \int\limits_0^\infty e^{-\xi \omega} h_{t, \alpha}(\xi) d\xi = e^{-t\omega^{\alpha}},\, \omega > 0.
+    \end{equation}
+
+    Из \eqref{eq:two_int} и \eqref{eq:one_int} следуют оценки
+    \begin{equation}
+        \label{eq:est_1}
+        \|U(t, -A_1^{\alpha_1})\varphi\| \le M_1 \int\limits_0^\infty e^{-\omega_1\xi}h_{t_1\alpha_1}(\xi) d\xi
+        = M_1 e^{-\omega_1^{\alpha_1}t}\|f\|
+    \end{equation}
+    и
+    \begin{equation}
+        \label{eq:est_2}
+        \|U(t, -A_2^{\alpha_2})\varphi\| \le M_2 e^{-\omega_2^{\alpha_2}t}\|f\|
+    \end{equation}
+
+    Таким образом операторы $-A_1^{\alpha_1}$ и $-A_2^{\alpha_2}$ удовлетворяют теореме Да Пратто, Грисварда \cite{Tihonov}
+    об обращении суммы операторов
+    \begin{equation}
+        Lu = (A_1^{\alpha_1} + A_2^{\alpha_2})u = f
+    \end{equation}
+    и пользуясь представлением \cite{Kostin}
+    \begin{equation}
+        u = \int\limits_0^\infty U(s, -A_1^{\alpha_1}) U(s, -A_2^{\alpha_2})f
+    \end{equation}
+    и оценками \eqref{eq:est_1}, \eqref{eq:est_2} получаем неравенство корректности
+    \begin{equation*}
+        \|u\| \le \int\limits_0^\infty \|U(s, -A_1^{\alpha_1})\| \|U(s, -A_2^{\alpha_2})\| ds \|f\|\\
+    \end{equation*}
+    \begin{equation}
+        \le M_1 M_2 \frac{\|f\|}{\omega^{\alpha_1 + \alpha_2}}
+    \end{equation}
+\end{proof}
+
+
+\section{Примеры $B$-полугрупп}
+
+Приведенные в этом разделе полугруппы относятся по \cite{Hille} к классу ''канонических полугрупп'' и в соответствии
+с \cite{Kostin} определяются следующим образом:
+
+Пусть функция $h(x)$ определена на интервале $x \in (a, b) \subset \mathbb{R} = (-\infty, \infty)$
+и удовлетворяет условиям:
+\begin{equation*}
+    h'(x) > 0, \quad h(a) = -\infty, \quad h(b) = \infty
+\end{equation*}
+
+Через $C_\omega (a, b)$ будем обозначать банахово пространство функций $\varphi (x)$ с нормой
+\begin{equation}
+    \|\varphi\|_{C_\omega} = \sup_{x \in (a, b)} e^{\omega h(x)} |\varphi(x)|, \omega \in \mathbb{R}
+\end{equation}
+
+Введём операторы $\pm A_h$, заданный выражениями $\mathbb{D}_h = \pm \frac{d}{dh}$ с областями определения
+\begin{equation}
+    D(\mathbb{D}_h) = \{\varphi \in C_\omega(a, b), \frac{d\varphi}{dh} \in C_\omega(a, b)\}
+\end{equation}
+
+Такие операторы являются генераторами полугрупп вида
+\begin{equation}
+    \label{eq:semigroup}
+    U(t, \pm A_h)\varphi(x) = \varphi[h^{-1}(h(x) \pm t)], t \ge 0
+\end{equation}
+
+\begin{lemma}
+    При $\omega \ge 0$ справедливы оценки
+    \begin{equation}
+        \label{eq:lemma}
+        \|U(t, \pm A_h)\varphi\|_{\pm\omega} \le e^{-\omega t} \|\varphi\|_{\pm \omega}
+    \end{equation}
+\end{lemma}
+
+Доказательство следует после замены $h^{-1}[h(x) \pm t] = s$ в равенстве \eqref{eq:semigroup}. Откуда
+следует соотношение
+\begin{equation}
+    \label{eq:ratio}
+    U(t, \pm A_h)\varphi(x) = \varphi[h^{-1}(h(x) \pm t)], t \ge 0
+\end{equation}
+из \eqref{eq:ratio} следует \eqref{eq:lemma}.
+
+\begin{corollary}
+        Неравенства \eqref{eq:lemma} показывают, что операторы $A_h$ являются $B$--позитивными
+        в пространствах $C_{-\omega}(a, b)$, а операторы $A_{-}$- $B$-позитивные в $C_{\omega}(a, b)$.
+\end{corollary}
+
+В частности, для некоторых классических случаев имеем:
+\begin{enumerate}
+    \item $x \in (-\infty, \infty), h(x) = x, \pm A = \pm\frac{d}{dx}$,
+    $U(t, \pm A)\varphi(x) = \varphi(x \pm t)$ --- полугруппы переноса.
+    Пространства
+    $E = C_{\pm}(-\infty, \infty) \|\varphi\| = \sup_{x \in \mathbb{R}} e^{\pm x |\varphi (x)|}$.
+    Дробным степеням $(\pm A)^{\alpha}$ соответствуют дробные производные Маршо.
+    \item $x \in (0, \infty), h(x) = \ln{x}, \pm A = \pm\frac{d}{dx}$,
+    $E = C_{\pm} \|\varphi\|_{\pm} = \sup_{x \in (0, \infty)} x^\lambda |\varphi(x)|$
+    $U(x, \pm A)\varphi(x) = \varphi(x e^{\pm t})$.\\
+    Дробным степеням операторов $\pm x \frac{d}{dx}$ соответствуют дробные производные Адамара \cite{Samko}, стр. 251.
+    \item $x \in (-1, 1), \pm A \varphi = \pm (1-x^2) \frac{d\varphi}{dx}$
+    $E = C_{\pm}(-1, 1)$, $\|\varphi\|_{\pm} = \sup_{x \in [-1, 1]} \frac{1+x}{1-x}^{\pm \frac{\omega}{2}} |\varphi(x)|$
+    $U(t, \pm A) \varphi(x) = \varphi(\frac{1 \pm tht}{1 \mp tht})$\\
+    Такие полугруппы, в соответствии с \cite{Hille} называются гиперболическими.
+\end{enumerate}
+
+\section{Заключение}
+
+В заключении заметим, что теорема \ref{theorem:one} аналогичными рассуждениями распространяется
+на случай конечного числа слагаемых с операторами
+\begin{equation*}
+    A_m^{\alpha_m}, \quad \alpha_m\in(0,1), \quad \|U(t_1-A_m)\|\le M_me^{-\omega_mt}
+\end{equation*}
+В этом случае уравнение
+\begin{equation*}
+    Lu=\sum\limits_{m=1}^nA_m^{\alpha_m}u=f
+\end{equation*}
+имеет решение
+\begin{equation*}
+    u=\int\limits_0^\infty\prod\limits_{m=1}^nU(t_1-A_m)fdt
+\end{equation*}
+с оценкой
+\begin{equation*}
+    \|u\|_E\le\frac{\prod_{m=1}^nM_m}{\prod_{m=1}^n\omega_m\alpha_m}\|f\|_E
+\end{equation*}
+
+\clearpage
+
+\begin{thebibliography}{99}
+    \bibitem{Krein} {\it Крейн~С.Г.} Линейные дифференциальные уравнения в банаховом пространстве "--- М.: Наука, 1967.
+    \bibitem{Iosida} {\it Иосида~К.} Функциональный анализ: Учебник "--- М.: Мир, 1967.
+    \bibitem{Tihonov} {\it Тихонов~А.Н.} Уравнения математической физики "--- М.: Наука, 1966.
+    \bibitem{Kostin} {\it Костин~В.А.} Элементарные полугруппы преобразований и их производящие уравнения // Доклады Академии наук. "--- 2014. "--- {\sl Т.~455}, \No~2. "--- С.~142--146.
+    \bibitem{DaPrato} {\it Giuseppe~Da~Prato, Pierre~Grisvard} Journal de mathematiques pures et appliquees. "--- serie 9, tome 54, fasc. 3. "--- pp. 305-387.
+    \bibitem{Hille} {\it Хилле~Э. Р.~Филлипс~М.} Функциональный анализ и полугруппы "--- М.: Изд-во иностр. лит., 1962.
+    \bibitem{Samko} {\it Самко~С.Г. Килбас~А.А., Маричев~О.И.} Интегралы и производные дробного порядка и некоторые их приложения "--- Минск: Наука и техника, 1987.
+\end{thebibliography}
+
+\end{document}
