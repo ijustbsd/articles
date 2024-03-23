@@ -1,9 +1,6 @@
 \documentclass{cmfnre}
 \usepackage[cp1251]{inputenc}
 \usepackage[russian]{babel}
-% \usepackage{amsmath}
-% \usepackage{amssymb}
-% \usepackage{amsthm}
 % \usepackage{showframe}
 
 \title{Корректная разрешимость задач для дробно-степенных операторных уравнений}
@@ -55,7 +52,7 @@ $u \in D(A) \in F$ выполняется оценка
     \|u\|_F \le M\|f\|_F
 \end{equation}
 
-Исследование корректности необходимо при численной реализации задач на быстродейтсвующих ЭВМ.
+Исследование корректности необходимо при численной реализации задач на быстро\-дейтсвующих ЭВМ.
 
 В частности для уравнений моделирующих процессы во фрактальных средах и описываемых дробно-интегро-дифференциальными
 уравнениями.
@@ -72,7 +69,7 @@ $A = (A_1^{\alpha_1} + A_2^{\alpha_2})$, $\alpha_1, \alpha_2 \in (0,1)$
 оператор $-A$ является производящим оператором равностепенно непрерывной полугруппы класса
 $C_0 U(t_1 - A), t \ge 0$.
 
-Это, в соответствии с \cite{Iosida}, стр.58, означает:
+Это, в соответствии с \cite{Iosida}, стр. 58, означает:
 \begin{enumerate}
     \item $U(0, -A) = I$ - тождественный оператор в $E$;
     \item $U(t+s, -A) = U(t, -A)U(s, -A) = U(s, -A)U(t, -A)$;
@@ -86,7 +83,7 @@ $C_0 U(t_1 - A), t \ge 0$.
 \begin{equation}
     -A U(t, -A)\varphi = \frac{d}{dt} U(t, -A)\varphi
 \end{equation}
-Если полугруппа U(t, -A) удовлетворяет условиям 1---5, то по Балакришнану \cite{Iosida}, стр.358, для оператора $A$ определена
+Если полугруппа U(t, -A) удовлетворяет условиям 1---5, то по Балакришнану \cite{Iosida}, стр. 358, для оператора $A$ определена
 дробная степень $A^\alpha, \alpha \in (0, 1)$ и такой оператор будем называть $B$--позитивным по
 Балакришнану.
 
@@ -94,7 +91,7 @@ $C_0 U(t_1 - A), t \ge 0$.
 \begin{equation}
     A^{-\alpha}f = \frac{1}{\Gamma(\alpha)} \int\limits_0^\infty \frac{U(t, -A)}{t^{1-\alpha}} fdt
 \end{equation}
-Тогда, согласно Балакришнану \cite{Iosida}, стр.358, если $A$-- $B$--позитивный, то определена дробная степень $A^{-\alpha}$:
+Тогда, согласно Балакришнану \cite{Iosida}, стр. 358, если $A$-- $B$--позитивный, то определена дробная степень $A^{-\alpha}$:
 \begin{equation}
     A^{\alpha}f = \frac{1}{\Gamma(-\alpha)} \int\limits_0^\infty \frac{1}{t^{1 + \alpha}} [U(t, -A) - I] fdt
 \end{equation}
@@ -127,7 +124,7 @@ $B$-позитивных операторов и доказывается
             U(t, -A_2^{\alpha_2})\varphi = \int\limits_0^\infty h_{t, \alpha_2}(\xi) U(\xi, -A) \varphi d\xi
         \end{aligned}
     \end{equation}
-    где $h_{t, \alpha}(\xi) > 0$ --- функция Иосиды со свойствами \cite{Iosida}, стр.358
+    где $h_{t, \alpha}(\xi) > 0$ --- функция Иосиды со свойствами \cite{Iosida}, стр. 358
     \begin{equation}
         \label{eq:one_int}
         \int\limits_0^\infty e^{-\xi \omega} h_{t, \alpha}(\xi) d\xi = e^{-t\omega^{\alpha}},\, \omega > 0.
@@ -221,11 +218,11 @@ $B$-позитивных операторов и доказывается
     Дробным степеням $(\pm A)^{\alpha}$ соответствуют дробные производные Маршо.
     \item $x \in (0, \infty), h(x) = \ln{x}, \pm A = \pm\frac{d}{dx}$,
     $E = C_{\pm} \|\varphi\|_{\pm} = \sup_{x \in (0, \infty)} x^\lambda |\varphi(x)|$
-    $U(x, \pm A)\varphi(x) = \varphi(x e^{\pm t})$.
-    Дробным степеням операторов $\pm x \frac{d}{dx}$ соответствуют дробные производные Адамара \cite{Samko}, стр.251.
+    $U(x, \pm A)\varphi(x) = \varphi(x e^{\pm t})$.\\
+    Дробным степеням операторов $\pm x \frac{d}{dx}$ соответствуют дробные производные Адамара \cite{Samko}, стр. 251.
     \item $x \in (-1, 1), \pm A \varphi = \pm (1-x^2) \frac{d\varphi}{dx}$
     $E = C_{\pm}(-1, 1)$, $\|\varphi\|_{\pm} = \sup_{x \in [-1, 1]} \frac{1+x}{1-x}^{\pm \frac{\omega}{2}} |\varphi(x)|$
-    $U(t, \pm A) \varphi(x) = \varphi(\frac{1 \pm tht}{1 \mp tht})$
+    $U(t, \pm A) \varphi(x) = \varphi(\frac{1 \pm tht}{1 \mp tht})$\\
     Такие полугруппы, в соответствии с \cite{Hille} называются гиперболическими.
 \end{enumerate}
 
