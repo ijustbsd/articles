@@ -1,0 +1,272 @@
+\documentclass[1244sdpt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+% \usepackage{showframe}
+
+\title{Операторные уравнения для обобщённых управляемых систем}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{corollary}{Следствие}[lemma]
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\begin{abstract}
+    Классическая математическая модель описывающая процессы движения одномерной управляемой системы с одной
+    степенью свободы через обыкновенные дифференциальные уравнения, обобщаются на случай обобщённых операторных
+    уравнений в банаховом пространстве. Устанавливается их корректная разрешимость по Адамару с применением
+    методов теории сильно непрерывных полугрупп линейных операторов.
+
+    Результаты применяются к широкому классу математических моделей описываемых уравнениями через
+    операторные ортогональные многочлены.
+
+    \textbf{Ключевые слова}: управляемые системы, операторные уравнения, корректные задачи,
+    сильно непрерывные полугруппы, операторные ортогональные многочлены.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+\section{Введение}
+
+% TODO: 8
+Как известно (см. 8), уравнение
+\begin{equation}
+    \label{eq:1}
+    \sum_{k=0}^{n} a_m \frac{d^k u(t)}{dt^k} = \sum_{z=0}^{m} b_z \frac{d^z Z(t)}{dt^z}, \quad m < n
+\end{equation}
+где $u(t)$ -- искомая функция (сигнал на выходе системы), $Z(t)$ -- заданная функция (сигнал на входе системы),
+$t \in (t_0, \infty)$, относится к классу дифференциальных уравнений описывающих процессы в замкнутой
+управляемой системе.
+
+Классическим методом решения таких уравнений является метод интегрального преобразования Лапласа.
+
+В настоящей заметке уравнение \ref{eq:1} обобщается на случай операторных уравнений в следующей постановке:
+пусть $E$ -- банахово пространство и $A$ -- линейный, регулярный, т.е. имеющий хотя бы для одного $t_0 \in \mathbb{C}$
+ограниченный обратный $(\lambda_0^I - A)^{-1}$, $I$ -- тождественный оператор.
+
+% TODO: 5
+В соответствии с [5] для такого оператора область определения степеней $A^n$, $D(A^n)$ превращается в
+банахово пространство $\mathbb{D}_n$ относительно нормы
+\begin{equation}
+    \|u\|_n = \sum_{k=0}^{n} \|A^k u\|_E.
+\end{equation}
+
+Для $f \in \mathbb{D}_m$ рассматривается операторное уравнение
+\begin{equation}
+    \label{eq:2}
+    \mathbb{P}_n(A)u = \sum_{k=0}^{n}a_k A^k u = \sum_{z=0}^{m} b_z A^z f = \mathbb{Q}_m(A)f,
+\end{equation}
+$m < n, a_k, b_z \in \mathbb{C}$, $\mathbb{C}$ -- комплексная плоскость.
+
+Ищется элемент $u \in \mathbb{D}_n$, удовлетворяющий уравнению \ref{eq:2} и указываются условия
+на исходные данные при которых задача \ref{eq:2} корректно разрешима с оценкой
+\begin{equation}
+    \|u\|_m \le M_m \|f\|_m.
+\end{equation}
+
+\section{Необходимые факты и понятия}
+
+\subsection{Корректность по Адамару}
+
+Пусть $E$ -- банахово пространство с нормой $\|\cdot\|_E$ и $A$ линейный замкнутный оператор с областью
+определения $D(A) \subset E$.
+
+Задача нахождения решения $u$ уравнения
+\begin{equation}
+    \label{eq:3}
+    Au = f,
+\end{equation}
+для $f \in E$ и $u \in D(A)$ называется корректной по Адамару, если:
+\begin{enumerate}
+    \item существует единственное $u \in D(A)$, удовлетворяющее \ref{eq:3};
+    \item для всякого $f \in E$ выполянется неравенство
+    \begin{equation}
+        \label{eq:4}
+        \|u\|_E \le M \|f\|_E.
+    \end{equation}
+    $M$ - не зависит от $f$;
+\end{enumerate}
+Неравенство \ref{eq:4} означает, что оператор $A$ имеет ограниченный в $E$ обратный оператор $A^{-1}$ с оценкой
+\begin{equation}
+    \label{eq:5}
+    \|A^{-1}f\| \le M \|f\|.
+\end{equation}
+Неравенство \ref{eq:5} называется неравенством корректности.
+
+\subsection{Сильно непрерывные полугруппы}
+
+% TODO: 3
+Говорят (3), что семейство $V(t), (t \ge 0)$ ограниченных в $E$ операторов образует сильно непрерывную
+полугруппу (полугруппу класса $C_0$), если выполнены следующие условия:
+\begin{enumerate}
+    \item $V(0)\varphi = \varphi, \quad \varphi \in E$;
+    \item $V(t+s)\varphi = V(s)U(t)\varphi, \quad \varphi \in E$;
+    \item $\lim\limits_{t\to0} \|V(t)\varphi-\varphi\| = 0, \quad \varphi \in E$;
+    \item $\lim\limits_{h\to0} \|\frac{1}{h}[V(h)\varphi-\varphi]\| = A\varphi, \quad \varphi \in D(A)$.
+\end{enumerate}
+Отсюда
+\begin{equation}
+    \frac{dV(t)}{dt}\bigg|_{t=0} \varphi = A\varphi.
+\end{equation}
+
+Для всякой полугруппы класса $C_0$ существуют константы $M, \omega$ при которых выполняется оценка
+\begin{equation}
+    \label{eq:6}
+    \|V(t)\| \le Me^{\omega t}, \quad t \ge 0.
+\end{equation}
+$\omega$ -- порядок роста полугруппы.
+
+% В дальнейшем такие полугруппы с производящим оператором $A$ (генератором) обозначаются через $V(t, A)$.
+
+% TODO: x3
+Если в \ref{eq:6} $\omega \le 0$, то такие полугруппы по Балакришнану (x3) называются равностепенно
+непрерывными и их производящий оператор $A$ обладает тем свойством, что для $\alpha \in (0, 1)$ существуют
+дробные степени оператора $-A$, имеющие вид
+\begin{equation}
+    (-A)^\alpha \varphi = \frac{1}{\Gamma(-\alpha)}
+\int\limits_0^\infty \frac{[V(t, -A)\varphi-\varphi]}{t^{1+\alpha}} dt
+\end{equation}
+
+При этом оператор $-(-A)^\alpha$ является генератором полугруппы $V(t, -(-A)^\alpha)\varphi$ вида
+\begin{equation}
+    V(t, -(-A)^\alpha)\varphi = \int\limits_0^\infty h_{\alpha,t}(\xi) V(\xi, -A) \varphi d\xi,
+\end{equation}
+% TODO: x3, 3
+где $h_{\alpha,t}(\xi)$ -- функция Иосиды (x3). Отсюда в силу [3], определены для $0 < \alpha \le n$
+все степени $(-A)^\alpha$.
+
+% TODO: 7
+Применяя этот факт, в [7] рассматривается операторное уравнение
+\begin{equation}
+    \label{eq:7}
+    \sum_{k=0}^{n} a_k A^k u = f, \quad f \in E
+\end{equation}
+и приводится следующий результат: если все корни многочлена $P_n(x), x_k$ принадлежат резольвентному множеству
+оператора $A$, то уравнение \ref{eq:7} имеет единственное решение $u \in D(A^n)$ и оно представимо в виде
+\begin{equation}
+    u = \int\limits_0^\infty q(t) V(t, A)fdt,
+\end{equation}
+где функция $q(t)$ является решением задачи
+\begin{equation}
+    \label{eq:14}
+    \sum_{k=0}^{n} (-1)^k a_k q^{(k)}(t) = \delta(t);
+\end{equation}
+\begin{equation}
+    q(0) = q'(0) = ... = q^{(n-1)}(0) = 0;
+\end{equation}
+$\delta(t)$ -- дельта функция.
+
+\subsection{Формулировка результата}
+
+Будем рассматривать уравнение \ref{eq:2} с оператором $A$ таким, что оператор $-A$ является генератором
+$C_0$-полугруппы удовлетворяющей оценке
+\begin{equation}
+    \|V(t, -A)\varphi\| \le Me^{-\omega t}, quad \omega > 0,
+\end{equation}
+и, следовательно, по Балакришнану оператор $A$ имеет все степени $A^m, m \le n$.
+
+Основным результатом является.
+
+\begin{theorem}
+    Если корни $\nu_k$ многочлена $P_n(x)$ взаимно простые и удовлетворяют условию
+    \begin{equation}
+        \label{eq:13}
+        Re \nu_k < \omega, \quad k = 1...n,
+    \end{equation}
+    % TODO: 1.11 -- x3
+    а оператор $-A$ является генератором полугруппы $V(t, -A)$ с оценкой (1.11?), то уравнение
+    \ref{eq:2} имеет единственное решение $u \in \mathbb{D}_n$, оно имеет вид
+    \begin{equation}
+        u = \int\limits_0^\infty \sum_{z=0}^{m} q^{(z)}(t) V(t, -A) fdt = \\
+        \int\limits_0^\infty Q_m (t) V(t, -A)fdt,
+    \end{equation}
+    где $q(t)$ является решением задачи
+    \begin{equation}
+        \label{eq:8}
+        \sum_{k=0}^{n} a_n q^{(k)}(t) = \delta(t);
+    \end{equation}
+    \begin{equation}
+        \label{eq:9}
+        q(0) = q'(0) = ... = q^{(n-1)}(0) = 0;
+    \end{equation}
+    и справедлива оценка корректности
+    \begin{equation}
+        \label{eq:15}
+        \|u\|_m \le M_m \|f\|_m, \\
+    \end{equation}
+    \begin{equation*}
+        \|f\|_m = \sum_{k=0}^{m} \|A^k f\|
+    \end{equation*}
+\end{theorem}
+
+\subsection{Доказательство теоремы}
+
+% TODO: 1
+В силу простоты корней многочлена $P_n(x)$ применение преобразования Лапласа к задаче \ref{eq:8}-\ref{eq:9}
+даёт её решение [1]
+\begin{equation}
+    \label{eq:10}
+    q(t) = \sum_{k=0}^{n} \frac{e^{\nu_{k}t}}{P'_n(\nu_k)}
+\end{equation}
+
+Из \ref{eq:10} следует неравенство
+\begin{equation}
+    \label{eq:11}
+    |q(t)| \le \sum_{k=0}^{n} \frac{e^{Re \nu_k t}}{P'_n(\nu_k)} \le M_n e^{\overline{\nu} t},
+\end{equation}
+$\overline{\nu} = max(\nu_k)$
+
+Из \ref{eq:11} и \ref{eq:9} для $f \in D(A)$ следует равенство
+\begin{equation}
+    \label{eq:12}
+    \int\limits_0^\infty q(t) A^k V(t, -A)f = \int\limits_0^\infty q^{(k)}(t) V(t, -A)fdt,
+\end{equation}
+которое можно доказать по индукции, так как при $k=1$ имеем при $\overline{\nu} < \omega$, интегрируя по частям
+\begin{gather*}
+    \int\limits_0^\infty q(t) A V(t, -A)fdt = \\
+    = -\int\limits_0^\infty q(t) (-A V(t, -A))fdt = \\
+    = -\int\limits_0^\infty q(t) \frac{dV(t, -A)}{dt}fdt = \\
+    = -q(t) V(t, -A)\bigg|_{t=0}^{\infty}f + \int\limits_0^\infty q(x) V(t, -A)fdt
+\end{gather*}
+% TODO: ? ??
+И так как $|q(t) V(t, -A)f \le Me^{(\nu \omega t)}$, то и $q(0)=0$, то получаем (?) для $?? = 1$.
+
+Применяя к уравнению \ref{eq:2} формулы \ref{eq:13} и \ref{eq:12}, получаем представление для решения
+\begin{equation}
+    u = \int\limits_0^\infty q(t) Q_m(A) V(t, -A)fdt = \int\limits_0^\infty Q_m (t) V(t, -A)fdt.
+\end{equation}
+Из которого следует равенство
+\begin{equation}
+    A^k u = \int\limits_0^\infty Q_m (t) V(t, -A) A^k fdt
+\end{equation}
+
+Используя соотношения \ref{eq:14}, \ref{eq:11}, \ref{eq:12} после стандартных оценок получаем неравенство
+\begin{gather*}
+    \|A^k u\| \le \int\limits_0^\infty |Q_m (t)| \|V(t, -A) A^k f\| dt \le \\
+    \le M_m \int\limits_0^\infty e^{(\overline{\nu} - \omega)t} at \cdot \|A^k f\| = \\
+    = \frac{M_m \|A^k f\|}{\omega - \overline{\nu}}
+\end{gather*}
+Суммируя по $k = 1, 2 ... m$, получаем оценку \ref{eq:15} и доказательство теоремы.
+
+\section{Заключение}
+
+В заключение заметим, что в классы многочленов с простыми корнями, рассмотренными в настоящей работе,
+попадают ортогональные многочлены, что характеризует широту возможных приложений полученного результата.
+Кроме того этому также способствует и многообразие примеров операторов производящих сильно непрерывные
+% TODO: 7
+полугруппы например приведённых в [7].
+
+\clearpage
+
+\begin{thebibliography}{99}
+    % \bibitem{Krein} {\it Крейн~С.Г.} Линейные дифференциальные уравнения в банаховом пространстве "--- М.: Наука, 1967.
+\end{thebibliography}
+
+\end{document}
